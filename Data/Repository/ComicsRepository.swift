@@ -21,19 +21,19 @@ public final class ComicsRepository {
         self.comicsRemoteDataSource.getComics(completion: completion)
     }
     
-    public func getFavoriteComics(completion: @escaping (RemoteResult<[Comic]>) -> Void) {
+    public func getFavoriteComics(completion: @escaping (LocalResult<[Comic]>) -> Void) {
         comicsLocalDataSource.getFavoriteComics(completion: completion)
     }
     
-    public func getFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Comic?>) -> Void) {
+    public func getFavoriteComic(byId comicId: Int, completion: @escaping (LocalResult<Comic?>) -> Void) {
         comicsLocalDataSource.getFavoriteComic(byId: comicId, completion: completion)
     }
     
-    public func addFavoriteComic(comic: Comic, completion: @escaping (RemoteResult<Bool>) -> Void) {
+    public func addFavoriteComic(comic: Comic, completion: @escaping (LocalResult<Bool>) -> Void) {
         comicsLocalDataSource.addFavoriteComic(comic, completion: completion)
     }
     
-    public func removeFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Bool>) -> Void) {
+    public func removeFavoriteComic(byId comicId: Int, completion: @escaping (LocalResult<Bool>) -> Void) {
         comicsLocalDataSource.removeFavoriteComic(byId: comicId, completion: completion)
     }
 }
