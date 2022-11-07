@@ -15,6 +15,7 @@ struct ComicsView: View {
     @ObservedObject private var comicsViewModel: ComicsViewModel
     
     @State var comics: [Comic] = []
+    @State var path: [Comic] = []
     
     init() {
         let remoteDS = ComicsRequester()
@@ -25,9 +26,14 @@ struct ComicsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            ComicsListView(comics: $comics, title: "Comics") { _ in
-                
+        NavigationStack(path: $path) {
+            ScrollView {
+                ComicsListView(comics: $comics, title: "Comics") { comics in
+                    path = [comics]
+                }
+            }
+            .navigationDestination(for: Comic.self) { comic in
+                ComicDetailView(comic: comic)
             }
         }
         .onReceive(comicsViewModel.comicsSubject, perform: { comicsOutput in
