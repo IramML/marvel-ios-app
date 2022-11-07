@@ -27,6 +27,7 @@
 		FA5679CF2918831700A51C46 /* libDatabaseManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5679BE291882F200A51C46 /* libDatabaseManager.a */; };
 		FA5679D6291883D400A51C46 /* MarvelComics.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA56794029184A2700A51C46 /* MarvelComics.xcdatamodeld */; };
 		FA5679D82918842100A51C46 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5679D72918842100A51C46 /* PersistenceController.swift */; };
+		FA5679DA29188A4600A51C46 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5679D929188A4600A51C46 /* Comic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		FA5679CB2918831700A51C46 /* DatabaseManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5679CD2918831700A51C46 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
 		FA5679D72918842100A51C46 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		FA5679D929188A4600A51C46 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +322,7 @@
 		FA567969291881F500A51C46 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				FA5679D929188A4600A51C46 /* Comic.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 					};
 					FA567967291881F500A51C46 = {
 						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
 					};
 					FA5679722918820100A51C46 = {
 						CreatedOnToolsVersion = 14.1;
@@ -781,6 +785,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5679DA29188A4600A51C46 /* Comic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,10 +1138,17 @@
 		FA56796D291881F500A51C46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1145,7 +1157,13 @@
 		FA56796E291881F500A51C46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
