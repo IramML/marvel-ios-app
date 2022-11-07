@@ -23,8 +23,6 @@
 		FA56794C29184A2700A51C46 /* MarvelComicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56794B29184A2700A51C46 /* MarvelComicsTests.swift */; };
 		FA56795629184A2700A51C46 /* MarvelComicsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56795529184A2700A51C46 /* MarvelComicsUITests.swift */; };
 		FA56795829184A2700A51C46 /* MarvelComicsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56795729184A2700A51C46 /* MarvelComicsUITestsLaunchTests.swift */; };
-		FA56798E2918821E00A51C46 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56798D2918821E00A51C46 /* UseCase.swift */; };
-		FA56799B2918827F00A51C46 /* UseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56799A2918827F00A51C46 /* UseCaseTests.swift */; };
 		FA56799C2918827F00A51C46 /* libUseCase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA56798B2918821E00A51C46 /* libUseCase.a */; };
 		FA5679C1291882F200A51C46 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5679C0291882F200A51C46 /* DatabaseManager.swift */; };
 		FA5679CE2918831700A51C46 /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5679CD2918831700A51C46 /* DatabaseManagerTests.swift */; };
@@ -53,6 +51,14 @@
 		FA8E4A1F2918D6330006FDEC /* ComicsRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E4A1E2918D6330006FDEC /* ComicsRequester.swift */; };
 		FA8E4A232918D6A60006FDEC /* ComicsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E4A222918D6A60006FDEC /* ComicsListResponse.swift */; };
 		FA8E4A252918D8F00006FDEC /* ComicsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E4A242918D8F00006FDEC /* ComicsAdapter.swift */; };
+		FAE0C7BE291968C600F19E26 /* GetComicsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0C7BD291968C600F19E26 /* GetComicsUseCase.swift */; };
+		FAE0C7C02919694C00F19E26 /* GetComicsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0C7BF2919694C00F19E26 /* GetComicsUseCaseTests.swift */; };
+		FAE0C7C329196C0000F19E26 /* libDomain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA567968291881F500A51C46 /* libDomain.a */; };
+		FAE0C7C429196C0300F19E26 /* libData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5679732918820100A51C46 /* libData.a */; };
+		FAE0C7C529196C1900F19E26 /* libDomain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA567968291881F500A51C46 /* libDomain.a */; };
+		FAE0C7C729196C4A00F19E26 /* ComicsRemoteDataSourceSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0C7C629196C4A00F19E26 /* ComicsRemoteDataSourceSpy.swift */; };
+		FAE0C7C929196C5300F19E26 /* ComicsLocalDataSourceSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0C7C829196C5300F19E26 /* ComicsLocalDataSourceSpy.swift */; };
+		FAE0C7CB29196C7E00F19E26 /* libDomain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA567968291881F500A51C46 /* libDomain.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,9 +179,7 @@
 		FA5679732918820100A51C46 /* libData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libData.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA56797E2918820E00A51C46 /* DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA56798B2918821E00A51C46 /* libUseCase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUseCase.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA56798D2918821E00A51C46 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		FA5679982918827F00A51C46 /* UseCaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UseCaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA56799A2918827F00A51C46 /* UseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseTests.swift; sourceTree = "<group>"; };
 		FA5679A6291882AA00A51C46 /* libRequestManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRequestManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5679BE291882F200A51C46 /* libDatabaseManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDatabaseManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5679C0291882F200A51C46 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -200,6 +204,10 @@
 		FA8E4A242918D8F00006FDEC /* ComicsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsAdapter.swift; sourceTree = "<group>"; };
 		FA8E4A262918DBF70006FDEC /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
 		FA8E4A292918DDA80006FDEC /* ComicsRequesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsRequesterTests.swift; sourceTree = "<group>"; };
+		FAE0C7BD291968C600F19E26 /* GetComicsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetComicsUseCase.swift; sourceTree = "<group>"; };
+		FAE0C7BF2919694C00F19E26 /* GetComicsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetComicsUseCaseTests.swift; sourceTree = "<group>"; };
+		FAE0C7C629196C4A00F19E26 /* ComicsRemoteDataSourceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsRemoteDataSourceSpy.swift; sourceTree = "<group>"; };
+		FAE0C7C829196C5300F19E26 /* ComicsLocalDataSourceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsLocalDataSourceSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE0C7CB29196C7E00F19E26 /* libDomain.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE0C7C529196C1900F19E26 /* libDomain.a in Frameworks */,
 				FA8E4A102918C72B0006FDEC /* libData.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +261,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE0C7C429196C0300F19E26 /* libData.a in Frameworks */,
+				FAE0C7C329196C0000F19E26 /* libDomain.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +455,7 @@
 		FA56798C2918821E00A51C46 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				FA56798D2918821E00A51C46 /* UseCase.swift */,
+				FAE0C7BD291968C600F19E26 /* GetComicsUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -451,7 +463,8 @@
 		FA5679992918827F00A51C46 /* UseCaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				FA56799A2918827F00A51C46 /* UseCaseTests.swift */,
+				FAE0C7CA29196C5600F19E26 /* DataSource */,
+				FAE0C7BF2919694C00F19E26 /* GetComicsUseCaseTests.swift */,
 			);
 			path = UseCaseTests;
 			sourceTree = "<group>";
@@ -584,6 +597,15 @@
 				FA8E4A242918D8F00006FDEC /* ComicsAdapter.swift */,
 			);
 			path = Adapter;
+			sourceTree = "<group>";
+		};
+		FAE0C7CA29196C5600F19E26 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				FAE0C7C629196C4A00F19E26 /* ComicsRemoteDataSourceSpy.swift */,
+				FAE0C7C829196C5300F19E26 /* ComicsLocalDataSourceSpy.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -834,9 +856,11 @@
 					};
 					FA56798A2918821E00A51C46 = {
 						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
 					};
 					FA5679972918827F00A51C46 = {
 						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
 					};
 					FA5679A5291882AA00A51C46 = {
 						CreatedOnToolsVersion = 14.1;
@@ -1002,7 +1026,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA56798E2918821E00A51C46 /* UseCase.swift in Sources */,
+				FAE0C7BE291968C600F19E26 /* GetComicsUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,7 +1034,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA56799B2918827F00A51C46 /* UseCaseTests.swift in Sources */,
+				FAE0C7C929196C5300F19E26 /* ComicsLocalDataSourceSpy.swift in Sources */,
+				FAE0C7C02919694C00F19E26 /* GetComicsUseCaseTests.swift in Sources */,
+				FAE0C7C729196C4A00F19E26 /* ComicsRemoteDataSourceSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1456,10 +1482,17 @@
 		FA5679902918821E00A51C46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1468,7 +1501,13 @@
 		FA5679912918821E00A51C46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1480,13 +1519,21 @@
 		FA5679A02918827F00A51C46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iramml.MarvelComics.UseCaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1495,9 +1542,16 @@
 		FA5679A12918827F00A51C46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iramml.MarvelComics.UseCaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
