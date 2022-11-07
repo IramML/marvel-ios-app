@@ -38,7 +38,7 @@ final class ComicsRepositoryTests: XCTestCase {
     
     func test_getFavoriteComicsWithSuccess() {
         let comics = [anyComic(), anyComic(), anyComic()]
-        perform(.getFavoriteComics, data: comics, error: nil, then: { (response: [Comic]?, error: RemoteError?) in
+        perform(.getFavoriteComics, data: comics, error: nil, then: { (response: [Comic]?, error: LocalError?) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
             XCTAssertEqual(response?.count, comics.count)
@@ -46,8 +46,8 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     func test_getFavoriteComicsWithFailure() {
-        let error = anyRemoteError()
-        perform(.getFavoriteComics, data: nil, error: error, then: { (response: [Comic]?, error: RemoteError?) in
+        let error = anyLocalError()
+        perform(.getFavoriteComics, data: nil, error: error, then: { (response: [Comic]?, error: LocalError?) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         })
@@ -55,7 +55,7 @@ final class ComicsRepositoryTests: XCTestCase {
     
     func test_getFavoriteComicWithSuccess() {
         let comic = anyComic()
-        perform(.getFavoriteComic, data: comic, error: nil, then: { (response: Comic?, error: RemoteError?) in
+        perform(.getFavoriteComic, data: comic, error: nil, then: { (response: Comic?, error: LocalError?) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
             XCTAssertEqual(response?.id, comic.id)
@@ -63,8 +63,8 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     func test_getFavoriteComicWithFailure() {
-        let error = anyRemoteError()
-        perform(.getFavoriteComic, data: nil, error: error, then: { (response: Comic?, error: RemoteError?) in
+        let error = anyLocalError()
+        perform(.getFavoriteComic, data: nil, error: error, then: { (response: Comic?, error: LocalError?) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         })
@@ -72,7 +72,7 @@ final class ComicsRepositoryTests: XCTestCase {
     
     func test_addFavoriteComicWithSuccess() {
         let added = true
-        perform(.addFavoriteComic, data: added, error: nil, then: { (response: Bool?, error: RemoteError?) in
+        perform(.addFavoriteComic, data: added, error: nil, then: { (response: Bool?, error: LocalError?) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
             XCTAssertEqual(response, added)
@@ -80,8 +80,8 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     func test_addFavoriteComicWithFailure() {
-        let error = anyRemoteError()
-        perform(.addFavoriteComic, data: nil, error: error, then: { (response: Bool?, error: RemoteError?) in
+        let error = anyLocalError()
+        perform(.addFavoriteComic, data: nil, error: error, then: { (response: Bool?, error: LocalError?) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         })
@@ -89,7 +89,7 @@ final class ComicsRepositoryTests: XCTestCase {
     
     func test_removeFavoriteComicWithSuccess() {
         let removed = true
-        perform(.removeFavoriteComic, data: removed, error: nil, then: { (response: Bool?, error: RemoteError?) in
+        perform(.removeFavoriteComic, data: removed, error: nil, then: { (response: Bool?, error: LocalError?) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
             XCTAssertEqual(response, removed)
@@ -97,8 +97,8 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     func test_removeFavoriteComicWithFailure() {
-        let error = anyRemoteError()
-        perform(.removeFavoriteComic, data: nil, error: error, then: { (response: Bool?, error: RemoteError?) in
+        let error = anyLocalError()
+        perform(.removeFavoriteComic, data: nil, error: error, then: { (response: Bool?, error: LocalError?) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         })
@@ -244,6 +244,10 @@ final class ComicsRepositoryTests: XCTestCase {
     
     private func anyRemoteError() -> RemoteError {
         .httpError
+    }
+    
+    private func anyLocalError() -> LocalError {
+        .databaseError
     }
     
 }

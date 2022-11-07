@@ -9,9 +9,9 @@ import Foundation
 import Data
 import Domain
 
-final class ComicsDataBase: BaseDataBase, ComicsLocalDataSource {
+public final class ComicsDataBase: BaseDataBase, ComicsLocalDataSource {
     
-    func getFavoriteComics(completion: @escaping (LocalResult<[Comic]>) -> Void) {
+    public func getFavoriteComics(completion: @escaping (LocalResult<[Comic]>) -> Void) {
         self.databaseClient.get(databaseEntity: .comics) { (result: LocalResult<[LocalComic]>) in
             switch result {
             case .success(let data):
@@ -22,7 +22,7 @@ final class ComicsDataBase: BaseDataBase, ComicsLocalDataSource {
         }
     }
     
-    func getFavoriteComic(byId comicId: Int, completion: @escaping (LocalResult<Comic?>) -> Void) {
+    public func getFavoriteComic(byId comicId: Int, completion: @escaping (LocalResult<Comic?>) -> Void) {
         self.databaseClient.get(byId: "\(comicId)", databaseEntity: .comics) { (result: LocalResult<LocalComic?>) in
             switch result {
             case .success(let data):
@@ -33,7 +33,7 @@ final class ComicsDataBase: BaseDataBase, ComicsLocalDataSource {
         }
     }
     
-    func addFavoriteComic(_ comic: Comic, completion: @escaping (LocalResult<Bool>) -> Void) {
+    public func addFavoriteComic(_ comic: Comic, completion: @escaping (LocalResult<Bool>) -> Void) {
         let dict: [String: Any] = [
             "id": comic.id,
             "title": comic.title,
@@ -48,7 +48,7 @@ final class ComicsDataBase: BaseDataBase, ComicsLocalDataSource {
         self.databaseClient.add(databaseEntity: .comics, data: dict, completion: completion)
     }
     
-    func removeFavoriteComic(byId comicId: Int, completion: @escaping (LocalResult<Bool>) -> Void) {
+    public func removeFavoriteComic(byId comicId: Int, completion: @escaping (LocalResult<Bool>) -> Void) {
         self.databaseClient.remove(byId: "\(comicId)", databaseEntity: DatabaseEntity.comics, completion: completion)
     }
     

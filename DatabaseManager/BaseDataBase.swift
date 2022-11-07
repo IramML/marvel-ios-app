@@ -7,10 +7,10 @@
 
 import Foundation
 
-class BaseDataBase {
+public class BaseDataBase {
     let databaseClient: DatabaseClient
     
-    init(databaseClient: DatabaseClient = CoredataClient()) {
+    public init(databaseClient: DatabaseClient = CoredataClient()) {
         self.databaseClient = databaseClient
     }
 }

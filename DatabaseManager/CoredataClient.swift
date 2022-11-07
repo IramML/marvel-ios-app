@@ -9,11 +9,15 @@ import Foundation
 import Data
 import CoreData
 
-final class CoredataClient: DatabaseClient {
+public final class CoredataClient: DatabaseClient {
     
     private let viewContext = PersistenceController.shared.container.viewContext
     
-    func get<T>(databaseEntity: DatabaseEntity, completion: @escaping (LocalResult<[T]>) -> Void) {
+    public init() {
+        
+    }
+    
+    public func get<T>(databaseEntity: DatabaseEntity, completion: @escaping (LocalResult<[T]>) -> Void) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: databaseEntity.entityName)
         
         if let results: [T] = try? request.execute() as? [T] {
@@ -23,7 +27,7 @@ final class CoredataClient: DatabaseClient {
         }
     }
     
-    func get<T>(byId id: String, databaseEntity: DatabaseEntity, completion: @escaping (LocalResult<T?>) -> Void) {
+    public func get<T>(byId id: String, databaseEntity: DatabaseEntity, completion: @escaping (LocalResult<T?>) -> Void) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: databaseEntity.entityName)
         request.predicate = NSPredicate(format: "id == %@", id)
         
@@ -34,7 +38,7 @@ final class CoredataClient: DatabaseClient {
         }
     }
     
-    func add(databaseEntity: DatabaseEntity, data: [String: Any], completion: @escaping (LocalResult<Bool>) -> Void) {
+    public func add(databaseEntity: DatabaseEntity, data: [String: Any], completion: @escaping (LocalResult<Bool>) -> Void) {
         let insertRequest = NSBatchInsertRequest(entityName: databaseEntity.entityName, objects: [data])
         insertRequest.resultType = NSBatchInsertRequestResultType.objectIDs
         let result = try? PersistenceController.shared.container.newBackgroundContext().execute(insertRequest) as? NSBatchInsertResult
@@ -48,7 +52,7 @@ final class CoredataClient: DatabaseClient {
         completion(.success(data: false))
     }
     
-    func remove(byId id: String, databaseEntity: DatabaseEntity, completion: @escaping (LocalResult<Bool>) -> Void) {
+    public func remove(byId id: String, databaseEntity: DatabaseEntity, completion: @escaping (LocalResult<Bool>) -> Void) {
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: databaseEntity.entityName)
 
         fetch.predicate = NSPredicate(format: "id == %@", id)

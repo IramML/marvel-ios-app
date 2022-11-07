@@ -13,10 +13,10 @@ final class ComicsLocalDataSourceSpy: ComicsLocalDataSource {
     
     
     private(set) var comicsCompletions: [ComicsCompletion] = []
-    private var getFavoriteComicsCompletions: [(RemoteResult<[Comic]>) -> Void] = []
-    private var getFavoriteComicCompletions: [(RemoteResult<Comic?>) -> Void] = []
-    private var addFavoriteComicCompletions: [(RemoteResult<Bool>) -> Void] = []
-    private var removeFavoriteComicCompletions: [(RemoteResult<Bool>) -> Void] = []
+    private var getFavoriteComicsCompletions: [(LocalResult<[Comic]>) -> Void] = []
+    private var getFavoriteComicCompletions: [(LocalResult<Comic?>) -> Void] = []
+    private var addFavoriteComicCompletions: [(LocalResult<Bool>) -> Void] = []
+    private var removeFavoriteComicCompletions: [(LocalResult<Bool>) -> Void] = []
     
     enum ComicsCompletion {
         case getComics
@@ -25,22 +25,22 @@ final class ComicsLocalDataSourceSpy: ComicsLocalDataSource {
         case removeComic
     }
     
-    func getFavoriteComics(completion: @escaping (RemoteResult<[Comic]>) -> Void) {
+    func getFavoriteComics(completion: @escaping (LocalResult<[Comic]>) -> Void) {
         comicsCompletions.append(.getComics)
         getFavoriteComicsCompletions.append(completion)
     }
     
-    func getFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Comic?>) -> Void) {
+    func getFavoriteComic(byId comicId: Int, completion: @escaping (LocalResult<Comic?>) -> Void) {
         comicsCompletions.append(.getComic)
         getFavoriteComicCompletions.append(completion)
     }
     
-    func addFavoriteComic(_ comic: Domain.Comic, completion: @escaping (RemoteResult<Bool>) -> Void) {
+    func addFavoriteComic(_ comic: Domain.Comic, completion: @escaping (LocalResult<Bool>) -> Void) {
         comicsCompletions.append(.addComic)
         addFavoriteComicCompletions.append(completion)
     }
     
-    func removeFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Bool>) -> Void) {
+    func removeFavoriteComic(byId comicId: Int, completion: @escaping (LocalResult<Bool>) -> Void) {
         comicsCompletions.append(.removeComic)
         removeFavoriteComicCompletions.append(completion)
     }
@@ -58,7 +58,7 @@ final class ComicsLocalDataSourceSpy: ComicsLocalDataSource {
         }
     }
     
-    func perform(_ comicsCompletion: ComicsCompletion, withError error: RemoteError, byIndex index: Int) {
+    func perform(_ comicsCompletion: ComicsCompletion, withError error: LocalError, byIndex index: Int) {
         switch comicsCompletion {
         case .getComics:
             getFavoriteComicsCompletions[index](.failure(error: error))
