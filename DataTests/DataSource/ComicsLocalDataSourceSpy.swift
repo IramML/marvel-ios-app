@@ -10,51 +10,64 @@ import Foundation
 import Domain
 
 final class ComicsLocalDataSourceSpy: ComicsLocalDataSource {
+    
+    
     private(set) var comicsCompletions: [ComicsCompletion] = []
-    private var getComicsCompletions: [(RemoteResult<[Comic]>) -> Void] = []
-    private var addComicCompletions: [(RemoteResult<Bool>) -> Void] = []
-    private var removeComicCompletions: [(RemoteResult<Bool>) -> Void] = []
+    private var getFavoriteComicsCompletions: [(RemoteResult<[Comic]>) -> Void] = []
+    private var getFavoriteComicCompletions: [(RemoteResult<Comic?>) -> Void] = []
+    private var addFavoriteComicCompletions: [(RemoteResult<Bool>) -> Void] = []
+    private var removeFavoriteComicCompletions: [(RemoteResult<Bool>) -> Void] = []
     
     enum ComicsCompletion {
         case getComics
+        case getComic
         case addComic
         case removeComic
     }
     
-    func getComics(completion: @escaping (RemoteResult<[Comic]>) -> Void) {
+    func getFavoriteComics(completion: @escaping (RemoteResult<[Comic]>) -> Void) {
         comicsCompletions.append(.getComics)
-        getComicsCompletions.append(completion)
+        getFavoriteComicsCompletions.append(completion)
     }
     
-    func addComic(_ comic: Domain.Comic, completion: @escaping (RemoteResult<Bool>) -> Void) {
+    func getFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Comic?>) -> Void) {
+        comicsCompletions.append(.getComic)
+        getFavoriteComicCompletions.append(completion)
+    }
+    
+    func addFavoriteComic(_ comic: Domain.Comic, completion: @escaping (RemoteResult<Bool>) -> Void) {
         comicsCompletions.append(.addComic)
-        addComicCompletions.append(completion)
+        addFavoriteComicCompletions.append(completion)
     }
     
-    func removeComic(byId comicId: Int, completion: @escaping (RemoteResult<Bool>) -> Void) {
+    func removeFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Bool>) -> Void) {
         comicsCompletions.append(.removeComic)
-        removeComicCompletions.append(completion)
+        removeFavoriteComicCompletions.append(completion)
     }
     
     func perform<T>(_ comicsCompletion: ComicsCompletion, withSuccess response: T, byIndex index: Int) {
         switch comicsCompletion {
         case .getComics:
-            getComicsCompletions[index](.success(data: response as! [Comic]))
+            getFavoriteComicsCompletions[index](.success(data: response as! [Comic]))
         case .addComic:
-            addComicCompletions[index](.success(data: response as! Bool))
+            addFavoriteComicCompletions[index](.success(data: response as! Bool))
         case .removeComic:
-            removeComicCompletions[index](.success(data: response as! Bool))
+            removeFavoriteComicCompletions[index](.success(data: response as! Bool))
+        case .getComic:
+            getFavoriteComicCompletions[index](.success(data: response as? Comic))
         }
     }
     
     func perform(_ comicsCompletion: ComicsCompletion, withError error: RemoteError, byIndex index: Int) {
         switch comicsCompletion {
         case .getComics:
-            getComicsCompletions[index](.failure(error: error))
+            getFavoriteComicsCompletions[index](.failure(error: error))
         case .addComic:
-            addComicCompletions[index](.failure(error: error))
+            addFavoriteComicCompletions[index](.failure(error: error))
         case .removeComic:
-            removeComicCompletions[index](.failure(error: error))
+            removeFavoriteComicCompletions[index](.failure(error: error))
+        case .getComic:
+            getFavoriteComicCompletions[index](.failure(error: error))
         }
     }
     

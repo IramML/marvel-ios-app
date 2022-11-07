@@ -9,7 +9,8 @@ import Foundation
 import Domain
 
 public protocol ComicsLocalDataSource {
-    func getComics(completion: @escaping (RemoteResult<[Comic]>) -> Void)
-    func addComic(_ comic: Comic, completion: @escaping (RemoteResult<Bool>) -> Void)
-    func removeComic(byId comicId: Int, completion: @escaping (RemoteResult<Bool>) -> Void)
+    func getFavoriteComics(completion: @escaping (RemoteResult<[Comic]>) -> Void)
+    func getFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Comic?>) -> Void)
+    func addFavoriteComic(_ comic: Comic, completion: @escaping (RemoteResult<Bool>) -> Void)
+    func removeFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Bool>) -> Void)
 }
