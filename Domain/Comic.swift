@@ -8,10 +8,34 @@
 import Foundation
 
 public struct Comic {
+    public init(id: Int, digitalId: Int, title: String, issueNumber: Double, variantDescription: String, description: String, modified: String, isbn: String, diamondCode: String, format: String, pageCount: String, textObjects: ComicTextObject, series: ComicResource, variants: [ComicResource], collections: [ComicResource], collectedIssues: [ComicResource], dates: [ComicDate], prices: [ComicPrice], thumbnail: ComicImage, images: [ComicImage], creators: ComicCreators) {
+        self.id = id
+        self.digitalId = digitalId
+        self.title = title
+        self.issueNumber = issueNumber
+        self.variantDescription = variantDescription
+        self.description = description
+        self.modified = modified
+        self.isbn = isbn
+        self.diamondCode = diamondCode
+        self.format = format
+        self.pageCount = pageCount
+        self.textObjects = textObjects
+        self.series = series
+        self.variants = variants
+        self.collections = collections
+        self.collectedIssues = collectedIssues
+        self.dates = dates
+        self.prices = prices
+        self.thumbnail = thumbnail
+        self.images = images
+        self.creators = creators
+    }
+    
     public var id: Int
     public var digitalId: Int
     public var title: String
-    public var issueNumber: String
+    public var issueNumber: Double
     public var variantDescription: String
     public var description: String
     public var modified: String
