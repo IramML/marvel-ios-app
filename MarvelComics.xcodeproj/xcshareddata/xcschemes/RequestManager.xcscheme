@@ -20,6 +20,20 @@
                ReferencedContainer = "container:MarvelComics.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA865B4B2919675C004EAD86"
+               BuildableName = "RequestManagerTests.xctest"
+               BlueprintName = "RequestManagerTests"
+               ReferencedContainer = "container:MarvelComics.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -43,7 +57,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA5679B0291882B900A51C46"
+               BlueprintIdentifier = "FA865B4B2919675C004EAD86"
                BuildableName = "RequestManagerTests.xctest"
                BlueprintName = "RequestManagerTests"
                ReferencedContainer = "container:MarvelComics.xcodeproj">

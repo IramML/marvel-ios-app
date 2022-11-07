@@ -19,8 +19,6 @@ struct HomeView: View {
                 .tabItem {
                     Label("Favorites", systemImage: "heart")
                 }
-        }.onAppear {
-            print("\(ComicsView_Previews.anyComic.thumbnail.path).\(ComicsView_Previews.anyComic.thumbnail.extensionImg)")
         }
     }
 }
