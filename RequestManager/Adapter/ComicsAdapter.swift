@@ -42,9 +42,9 @@ extension Array where Element == RemoteComicResource {
     }
 }
 
-extension RemoteComicTextObject {
-    func toDomain() -> ComicTextObject {
-        ComicTextObject(type: type, language: language, text: text)
+extension Array where Element == RemoteComicTextObject {
+    func toDomain() -> [ComicTextObject] {
+        map { ComicTextObject(type: $0.type, language: $0.language, text: $0.text)}
     }
 }
 

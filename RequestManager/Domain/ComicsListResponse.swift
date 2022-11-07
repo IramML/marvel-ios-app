@@ -26,8 +26,8 @@ struct RemoteComic: Codable {
     var isbn: String
     var diamondCode: String
     var format: String
-    var pageCount: String
-    var textObjects: RemoteComicTextObject
+    var pageCount: Int
+    var textObjects: [RemoteComicTextObject]
     var series: RemoteComicResource
     var variants: [RemoteComicResource]
     var collections: [RemoteComicResource]
@@ -52,7 +52,7 @@ struct RemoteComicDate: Codable {
 
 struct RemoteComicPrice: Codable {
     var type: String
-    var price: String
+    var price: Float
 }
 
 struct RemoteComicResource: Codable {

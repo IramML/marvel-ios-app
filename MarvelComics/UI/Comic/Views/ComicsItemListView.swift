@@ -20,8 +20,9 @@ struct ComicsItemListView: View {
                 CacheAsyncImage(url: URL(string: "\(comic.thumbnail.path.replacingOccurrences(of: "http", with: "https")).\(comic.thumbnail.extensionImg)")!) { image in
                     image.image?
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
+                            .scaledToFit()
                             .cornerRadius(8)
+                            .frame(width: 130, height: 250)
                     }
                     .frame(width: 130, height: 250)
                     .padding(.horizontal, 16)

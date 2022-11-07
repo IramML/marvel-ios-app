@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Comic {
-    public init(id: Int, digitalId: Int, title: String, issueNumber: Double, variantDescription: String, description: String, modified: String, isbn: String, diamondCode: String, format: String, pageCount: String, textObjects: ComicTextObject, series: ComicResource, variants: [ComicResource], collections: [ComicResource], collectedIssues: [ComicResource], dates: [ComicDate], prices: [ComicPrice], thumbnail: ComicImage, images: [ComicImage], creators: ComicCreators) {
+    public init(id: Int, digitalId: Int, title: String, issueNumber: Double, variantDescription: String, description: String, modified: String, isbn: String, diamondCode: String, format: String, pageCount: Int, textObjects: [ComicTextObject], series: ComicResource, variants: [ComicResource], collections: [ComicResource], collectedIssues: [ComicResource], dates: [ComicDate], prices: [ComicPrice], thumbnail: ComicImage, images: [ComicImage], creators: ComicCreators) {
         self.id = id
         self.digitalId = digitalId
         self.title = title
@@ -42,8 +42,8 @@ public struct Comic {
     public var isbn: String
     public var diamondCode: String
     public var format: String
-    public var pageCount: String
-    public var textObjects: ComicTextObject
+    public var pageCount: Int
+    public var textObjects: [ComicTextObject]
     public var series: ComicResource
     public var variants: [ComicResource]
     public var collections: [ComicResource]
@@ -78,13 +78,13 @@ public struct ComicDate {
 }
 
 public struct ComicPrice {
-    public init(type: String, price: String) {
+    public init(type: String, price: Float) {
         self.type = type
         self.price = price
     }
     
     public var type: String
-    public var price: String
+    public var price: Float
 }
 
 public struct ComicResource {

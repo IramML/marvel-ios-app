@@ -12,11 +12,11 @@ import Domain
 public final class GetComicsUseCase {
     private let comicsRepository: ComicsRepository
     
-    init(comicsRepository: ComicsRepository) {
+    public init(comicsRepository: ComicsRepository) {
         self.comicsRepository = comicsRepository
     }
     
-    func invoke(completion: @escaping (RemoteResult<[Comic]>) -> Void) {
+    public func invoke(completion: @escaping (RemoteResult<[Comic]>) -> Void) {
         comicsRepository.getComics(completion: completion)
     }
 }

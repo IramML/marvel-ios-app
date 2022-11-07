@@ -59,6 +59,12 @@
 		FAE0C7C729196C4A00F19E26 /* ComicsRemoteDataSourceSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0C7C629196C4A00F19E26 /* ComicsRemoteDataSourceSpy.swift */; };
 		FAE0C7C929196C5300F19E26 /* ComicsLocalDataSourceSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0C7C829196C5300F19E26 /* ComicsLocalDataSourceSpy.swift */; };
 		FAE0C7CB29196C7E00F19E26 /* libDomain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA567968291881F500A51C46 /* libDomain.a */; };
+		FAE0C7CD29196F4E00F19E26 /* ComicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0C7CC29196F4E00F19E26 /* ComicsViewModel.swift */; };
+		FAE0C7CE291970AC00F19E26 /* libRequestManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5679A6291882AA00A51C46 /* libRequestManager.a */; };
+		FAE0C7CF291970AE00F19E26 /* libDatabaseManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5679BE291882F200A51C46 /* libDatabaseManager.a */; };
+		FAE0C7D0291970CF00F19E26 /* libData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5679732918820100A51C46 /* libData.a */; };
+		FAE0C7D1291970F800F19E26 /* libUseCase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA56798B2918821E00A51C46 /* libUseCase.a */; };
+		FAE0C7D22919713C00F19E26 /* libData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5679732918820100A51C46 /* libData.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +214,7 @@
 		FAE0C7BF2919694C00F19E26 /* GetComicsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetComicsUseCaseTests.swift; sourceTree = "<group>"; };
 		FAE0C7C629196C4A00F19E26 /* ComicsRemoteDataSourceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsRemoteDataSourceSpy.swift; sourceTree = "<group>"; };
 		FAE0C7C829196C5300F19E26 /* ComicsLocalDataSourceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsLocalDataSourceSpy.swift; sourceTree = "<group>"; };
+		FAE0C7CC29196F4E00F19E26 /* ComicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +222,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE0C7D1291970F800F19E26 /* libUseCase.a in Frameworks */,
+				FAE0C7D0291970CF00F19E26 /* libData.a in Frameworks */,
 				FA5679EF2918935500A51C46 /* libDomain.a in Frameworks */,
+				FAE0C7CF291970AE00F19E26 /* libDatabaseManager.a in Frameworks */,
+				FAE0C7CE291970AC00F19E26 /* libRequestManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE0C7D22919713C00F19E26 /* libData.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +567,7 @@
 		FA5679E0291891E800A51C46 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				FAE0C7CC29196F4E00F19E26 /* ComicsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -964,6 +977,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE0C7CD29196F4E00F19E26 /* ComicsViewModel.swift in Sources */,
 				FA5679EC2918933600A51C46 /* ComicsListView.swift in Sources */,
 				FA5679E8291892B800A51C46 /* ComicsView.swift in Sources */,
 				FA5679E62918927800A51C46 /* HomeView.swift in Sources */,
