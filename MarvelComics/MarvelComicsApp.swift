@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DatabaseManager
 
 @main
 struct MarvelComicsApp: App {
