@@ -4,12 +4,9 @@
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="format" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="imageExtension" optional="YES" attributeType="String"/>
+        <attribute name="imagePath" optional="YES" attributeType="String"/>
         <attribute name="pageCount" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="thumbnail" maxCount="1" deletionRule="Nullify" destinationEntity="LocalComicImage"/>
-    </entity>
-    <entity name="LocalComicImage" representedClassName="LocalComicImage" syncable="YES">
-        <attribute name="extensionImg" optional="YES" attributeType="String"/>
-        <attribute name="path" optional="YES" attributeType="String"/>
     </entity>
 </model>

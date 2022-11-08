@@ -24,7 +24,7 @@ struct ComicsListView: View {
             Text(title)
                 .font(.title)
                 .padding(.top, 16.0)
-                .padding(.horizontal, 8.0)
+                .padding(.horizontal, 16.0)
             ScrollView {
                 LazyVGrid(columns: gridShape) {
                     ForEach(comics, id: \.id) { comic in

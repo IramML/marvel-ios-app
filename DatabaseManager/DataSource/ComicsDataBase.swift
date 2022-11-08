@@ -35,15 +35,13 @@ public final class ComicsDataBase: BaseDataBase, ComicsLocalDataSource {
     
     public func addFavoriteComic(_ comic: Comic, completion: @escaping (LocalResult<Bool>) -> Void) {
         let dict: [String: Any] = [
-            "id": "\(comic.id)",
+            "id": String(comic.id),
             "title": comic.title,
             "desc": comic.description,
             "format": comic.format,
-            "pageCount": "\(comic.pageCount)",
-            "thumbnail": [
-                "path": comic.thumbnail.path,
-                "extensionImg": comic.thumbnail.extensionImg
-            ],
+            "pageCount": String(comic.pageCount),
+            "imagePath": comic.thumbnail.path,
+            "imageExtension": comic.thumbnail.extensionImg
         ]
         self.databaseClient.add(databaseEntity: .comics, data: dict, completion: completion)
     }

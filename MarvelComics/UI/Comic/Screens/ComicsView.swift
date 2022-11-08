@@ -33,16 +33,17 @@ struct ComicsView: View {
                     path = [comics]
                 }
             }
+            .onReceive(comicsViewModel.comicsSubject, perform: { comicsOutput in
+                comics = comicsOutput
+            })
+            .onAppear {
+                comicsViewModel.fetchComics()
+            }
             .navigationDestination(for: Comic.self) { comic in
                 ComicDetailView(comic: comic)
             }
         }
-        .onReceive(comicsViewModel.comicsSubject, perform: { comicsOutput in
-            comics = comicsOutput
-        })
-        .onAppear {
-            comicsViewModel.fetchComics()
-        }
+        
     }
 }
 

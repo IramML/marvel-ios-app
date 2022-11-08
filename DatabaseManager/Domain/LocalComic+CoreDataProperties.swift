@@ -16,12 +16,13 @@ extension LocalComic {
         return NSFetchRequest<LocalComic>(entityName: "LocalComic")
     }
 
-    @NSManaged public var id: Int16
-    @NSManaged public var title: String?
-    @NSManaged public var format: String?
-    @NSManaged public var pageCount: Int16
     @NSManaged public var desc: String?
-    @NSManaged public var thumbnail: LocalComicImage?
+    @NSManaged public var format: String?
+    @NSManaged public var id: String?
+    @NSManaged public var pageCount: String?
+    @NSManaged public var title: String?
+    @NSManaged public var imagePath: String?
+    @NSManaged public var imageExtension: String?
 
 }
 
