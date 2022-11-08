@@ -10,24 +10,31 @@ import UseCase
 import Data
 import Domain
 import RequestManager
+import DatabaseManager
 
 struct ComicsView: View {
     @ObservedObject private var comicsViewModel: ComicsViewModel
     
     @State var comics: [Comic] = []
+    @State var path: [Comic] = []
     
     init() {
         let remoteDS = ComicsRequester()
-        let localDS = LocalDSTemp()
+        let localDS = ComicsDataBase()
         let repository = ComicsRepository(comicsRemoteDataSource: remoteDS, comicsLocalDataSource: localDS)
         let getComicsUseCase = GetComicsUseCase(comicsRepository: repository)
         self.comicsViewModel = ComicsViewModel(getComicsUseCase: getComicsUseCase)
     }
     
     var body: some View {
-        ScrollView {
-            ComicsListView(comics: $comics, title: "Comics") { _ in
-                
+        NavigationStack(path: $path) {
+            ScrollView {
+                ComicsListView(comics: $comics, title: "Comics") { comics in
+                    path = [comics]
+                }
+            }
+            .navigationDestination(for: Comic.self) { comic in
+                ComicDetailView(comic: comic)
             }
         }
         .onReceive(comicsViewModel.comicsSubject, perform: { comicsOutput in
@@ -46,22 +53,3 @@ struct ComicsView_Previews: PreviewProvider {
     }
 }
 
-class LocalDSTemp: ComicsLocalDataSource {
-    func getFavoriteComics(completion: @escaping (RemoteResult<[Comic]>) -> Void) {
-        
-    }
-    
-    func getFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Comic?>) -> Void) {
-        
-    }
-    
-    func addFavoriteComic(_ comic: Comic, completion: @escaping (RemoteResult<Bool>) -> Void) {
-        
-    }
-    
-    func removeFavoriteComic(byId comicId: Int, completion: @escaping (RemoteResult<Bool>) -> Void) {
-        
-    }
-    
-    
-}

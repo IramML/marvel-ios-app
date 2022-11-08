@@ -38,7 +38,7 @@ final class ComicsRepositoryTests: XCTestCase {
     
     func test_getFavoriteComicsWithSuccess() {
         let comics = [anyComic(), anyComic(), anyComic()]
-        perform(.getFavoriteComics, data: comics, error: nil, then: { (response: [Comic]?, error: RemoteError?) in
+        perform(.getFavoriteComics, data: comics, error: nil, then: { (response: [Comic]?, error: LocalError?) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
             XCTAssertEqual(response?.count, comics.count)
@@ -46,8 +46,8 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     func test_getFavoriteComicsWithFailure() {
-        let error = anyRemoteError()
-        perform(.getFavoriteComics, data: nil, error: error, then: { (response: [Comic]?, error: RemoteError?) in
+        let error = anyLocalError()
+        perform(.getFavoriteComics, data: nil, error: error, then: { (response: [Comic]?, error: LocalError?) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         })
@@ -55,7 +55,7 @@ final class ComicsRepositoryTests: XCTestCase {
     
     func test_getFavoriteComicWithSuccess() {
         let comic = anyComic()
-        perform(.getFavoriteComic, data: comic, error: nil, then: { (response: Comic?, error: RemoteError?) in
+        perform(.getFavoriteComic, data: comic, error: nil, then: { (response: Comic?, error: LocalError?) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
             XCTAssertEqual(response?.id, comic.id)
@@ -63,8 +63,8 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     func test_getFavoriteComicWithFailure() {
-        let error = anyRemoteError()
-        perform(.getFavoriteComic, data: nil, error: error, then: { (response: Comic?, error: RemoteError?) in
+        let error = anyLocalError()
+        perform(.getFavoriteComic, data: nil, error: error, then: { (response: Comic?, error: LocalError?) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         })
@@ -72,7 +72,7 @@ final class ComicsRepositoryTests: XCTestCase {
     
     func test_addFavoriteComicWithSuccess() {
         let added = true
-        perform(.addFavoriteComic, data: added, error: nil, then: { (response: Bool?, error: RemoteError?) in
+        perform(.addFavoriteComic, data: added, error: nil, then: { (response: Bool?, error: LocalError?) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
             XCTAssertEqual(response, added)
@@ -80,8 +80,8 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     func test_addFavoriteComicWithFailure() {
-        let error = anyRemoteError()
-        perform(.addFavoriteComic, data: nil, error: error, then: { (response: Bool?, error: RemoteError?) in
+        let error = anyLocalError()
+        perform(.addFavoriteComic, data: nil, error: error, then: { (response: Bool?, error: LocalError?) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         })
@@ -89,7 +89,7 @@ final class ComicsRepositoryTests: XCTestCase {
     
     func test_removeFavoriteComicWithSuccess() {
         let removed = true
-        perform(.removeFavoriteComic, data: removed, error: nil, then: { (response: Bool?, error: RemoteError?) in
+        perform(.removeFavoriteComic, data: removed, error: nil, then: { (response: Bool?, error: LocalError?) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
             XCTAssertEqual(response, removed)
@@ -97,15 +97,15 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     func test_removeFavoriteComicWithFailure() {
-        let error = anyRemoteError()
-        perform(.removeFavoriteComic, data: nil, error: error, then: { (response: Bool?, error: RemoteError?) in
+        let error = anyLocalError()
+        perform(.removeFavoriteComic, data: nil, error: error, then: { (response: Bool?, error: LocalError?) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         })
     }
     
     func perform<T>(_ comicsRepositoryCompletion: ComicsRepositoryCompletion, data: T?, error: RemoteError?, then: @escaping (T?, RemoteError?) -> Void) {
-        let (repository, remoteDS, localDS) = makeSUT()
+        let (repository, remoteDS, _) = makeSUT()
         
         let exp = expectation(description: "Wait for completion")
         var responseData: T? = nil
@@ -129,7 +129,30 @@ final class ComicsRepositoryTests: XCTestCase {
             }
             
         case .getFavoriteComics:
-            repository.getFavoriteComics { (result: RemoteResult<[Comic]>) in
+            break
+        case .getFavoriteComic:
+            break
+        case .addFavoriteComic:
+            break
+        case .removeFavoriteComic:
+            break
+        }
+        wait(for: [exp], timeout: 2.0)
+        
+        then(responseData, responseError)
+    }
+    
+    func perform<T>(_ comicsRepositoryCompletion: ComicsRepositoryCompletion, data: T?, error: LocalError?, then: @escaping (T?, LocalError?) -> Void) {
+        let (repository, _, localDS) = makeSUT()
+        
+        let exp = expectation(description: "Wait for completion")
+        var responseData: T? = nil
+        var responseError: LocalError? = nil
+        switch comicsRepositoryCompletion {
+        case .getComics:
+            break
+        case .getFavoriteComics:
+            repository.getFavoriteComics { (result: LocalResult<[Comic]>) in
                 switch result {
                 case .success(let data):
                     responseData = data as? T
@@ -145,7 +168,7 @@ final class ComicsRepositoryTests: XCTestCase {
                 localDS.perform(.getComics, withError: error, byIndex: 0)
             }
         case .getFavoriteComic:
-            repository.getFavoriteComic(byId: 0) { (result: RemoteResult<Comic?>) in
+            repository.getFavoriteComic(byId: 0) { (result: LocalResult<Comic?>) in
                 switch result {
                 case .success(let data):
                     responseData = data as? T
@@ -161,7 +184,7 @@ final class ComicsRepositoryTests: XCTestCase {
                 localDS.perform(.getComic, withError: error, byIndex: 0)
             }
         case .addFavoriteComic:
-            repository.addFavoriteComic(comic: anyComic()) { (result: RemoteResult<Bool>) in
+            repository.addFavoriteComic(comic: anyComic()) { (result: LocalResult<Bool>) in
                 switch result {
                 case .success(let data):
                     responseData = data as? T
@@ -177,7 +200,7 @@ final class ComicsRepositoryTests: XCTestCase {
                 localDS.perform(.addComic, withError: error, byIndex: 0)
             }
         case .removeFavoriteComic:
-            repository.removeFavoriteComic(byId: 0) { (result: RemoteResult<Bool>) in
+            repository.removeFavoriteComic(byId: 0) { (result: LocalResult<Bool>) in
                 switch result {
                 case .success(let data):
                     responseData = data as? T
@@ -199,6 +222,8 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     
+    
+    
     // MARK - Helpers
     private func makeSUT() -> (repository: ComicsRepository, remoteDS: ComicsRemoteDataSourceSpy, localDS: ComicsLocalDataSourceSpy) {
         let remoteDS = ComicsRemoteDataSourceSpy()
@@ -214,11 +239,15 @@ final class ComicsRepositoryTests: XCTestCase {
     }
     
     private func anyComic() -> Comic {
-        Comic(id: 0, digitalId: 0, title: "any", issueNumber: 0, variantDescription: "any", description: "any", modified: "any", isbn: "any", diamondCode: "any", format: "any", pageCount: 0, textObjects: [ComicTextObject(type: "any", language: "any", text: "any")], series: ComicResource(resourceURI: "any", name: "any"), variants: [ComicResource(resourceURI: "any", name: "any")], collections: [ComicResource(resourceURI: "any", name: "any")], collectedIssues: [ComicResource(resourceURI: "any", name: "any")], dates: [ComicDate(type: "any", date: "any")], prices: [ComicPrice(type: "any", price: "any")], thumbnail: ComicImage(path: "any", extensionImg: "any"), images: [ComicImage(path: "any", extensionImg: "any")], creators: ComicCreators(available: 0, returned: 0, collectionURI: "any", items: [ComicCreatorsItem(resourceURI: "any", name: "any", role: "any")]))
+        Comic(id: 0, digitalId: 0, title: "any", issueNumber: 0, variantDescription: "any", description: "any", modified: "any", isbn: "any", diamondCode: "any", format: "any", pageCount: 0, textObjects: [ComicTextObject(type: "any", language: "any", text: "any")], series: ComicResource(resourceURI: "any", name: "any"), variants: [ComicResource(resourceURI: "any", name: "any")], collections: [ComicResource(resourceURI: "any", name: "any")], collectedIssues: [ComicResource(resourceURI: "any", name: "any")], dates: [ComicDate(type: "any", date: "any")], prices: [ComicPrice(type: "any", price: 20)], thumbnail: ComicImage(path: "any", extensionImg: "any"), images: [ComicImage(path: "any", extensionImg: "any")], creators: ComicCreators(available: 0, returned: 0, collectionURI: "any", items: [ComicCreatorsItem(resourceURI: "any", name: "any", role: "any")]))
     }
     
     private func anyRemoteError() -> RemoteError {
         .httpError
+    }
+    
+    private func anyLocalError() -> LocalError {
+        .databaseError
     }
     
 }
