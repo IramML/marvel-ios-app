@@ -4,10 +4,93 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Data.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>DatabaseManager.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Domain.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>MarvelComics.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>RequestManager.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>UseCase.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>FA56793129184A2400A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA56794629184A2700A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA56795029184A2700A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA5679722918820100A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA56797D2918820E00A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA56798A2918821E00A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA5679972918827F00A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA5679A5291882AA00A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA5679B0291882B900A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA5679BD291882F200A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA5679CA2918831700A51C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

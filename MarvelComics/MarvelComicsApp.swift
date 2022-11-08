@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DatabaseManager
 
 @main
 struct MarvelComicsApp: App {
@@ -13,7 +14,7 @@ struct MarvelComicsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
