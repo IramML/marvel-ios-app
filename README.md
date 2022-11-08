@@ -11,5 +11,15 @@ The proposit of this project is to consume a marvel API to be able to list, see 
 ### Requirements
 - [Xcode](https://developer.apple.com/xcode/)
 
+### How to run
+Build the targets in the following order
+1. `Domain`
+2. `Data`
+3. `UseCase`
+4. `RequestManager`
+5. `DatabaseManager`
+6. `MarvelComics`
+7. Run the application in `MarvelComics` target
+
 ## Roadmap
 All the goals to be archived in this project will be showed in the [GitHub issues of this project](https://github.com/IramML/marvel-ios-app/issues)
