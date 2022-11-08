@@ -16,6 +16,7 @@ struct ComicDetailView: View {
     @StateObject var comicDetailViewModel: ComicDetailViewModel
     var comic: Comic
     @State var isSaved: Bool? = nil
+    @StateObject private var alertBody: AlertBody = AlertBody()
     
     init(comic: Comic) {
         self.comic = comic
@@ -72,6 +73,12 @@ struct ComicDetailView: View {
             .padding(.horizontal, 16)
             .padding(.top, 8)
         }
+        .alert(alertBody.title, isPresented: $alertBody.shouldShow) {
+        }
+        .onReceive(comicDetailViewModel.alertSubject, perform: { alertOutput in
+            alertBody.title = alertOutput.title
+            alertBody.shouldShow = alertOutput.shouldShow
+        })
         .onReceive(comicDetailViewModel.isSavedSubject, perform: { isSavedOutput in
             isSaved = isSavedOutput
         })
