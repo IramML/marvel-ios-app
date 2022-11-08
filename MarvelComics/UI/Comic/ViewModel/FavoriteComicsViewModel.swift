@@ -15,14 +15,17 @@ class FavoriteComicsViewModel: ObservableObject {
     private let getFavoriteComicsUseCase: GetFavoriteComicsUseCase
     var comicsSubject = PassthroughSubject<[Comic], Never>()
     var alertSubject = PassthroughSubject<AlertBody, Never>()
+    var fetchingSubject = PassthroughSubject<Bool, Never>()
     
     init(getFavoriteComicsUseCase: GetFavoriteComicsUseCase) {
         self.getFavoriteComicsUseCase = getFavoriteComicsUseCase
     }
     
     func fetchComics() {
+        fetchingSubject.send(true)
         getFavoriteComicsUseCase.invoke { [weak self] (result: LocalResult<[Comic]>) in
             DispatchQueue.main.async {
+                self?.fetchingSubject.send(false)
                 switch result {
                 case .success(let data):
                     self?.comicsSubject.send(data)

@@ -17,6 +17,7 @@ struct FavoriteComicsView: View {
     
     @State var comics: [Comic] = []
     @State var path: [Comic] = []
+    @State var isFetching: Bool = false
     @StateObject private var alertBody: AlertBody = AlertBody()
     
     init() {
@@ -30,11 +31,22 @@ struct FavoriteComicsView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            ScrollView {
-                ComicsListView(comics: $comics, title: "Favorites") { comics in
-                    path = [comics]
+            ZStack {
+                if isFetching {
+                    ProgressView()
+                } else {
+                    if !comics.isEmpty {
+                        ScrollView {
+                            ComicsListView(comics: $comics, title: "Favorites") { comics in
+                                path = [comics]
+                            }
+                        }
+                    } else {
+                        Text("No comics")
+                    }
                 }
             }
+            
             .alert(alertBody.title, isPresented: $alertBody.shouldShow) {
             }
             .onReceive(favoriteComicsViewModel.alertSubject, perform: { alertOutput in
@@ -43,6 +55,9 @@ struct FavoriteComicsView: View {
             })
             .onReceive(favoriteComicsViewModel.comicsSubject, perform: { comicsOutput in
                 comics = comicsOutput
+            })
+            .onReceive(favoriteComicsViewModel.fetchingSubject, perform: { isFetchingOutput in
+                isFetching = isFetchingOutput
             })
             .onAppear {
                 favoriteComicsViewModel.fetchComics()
