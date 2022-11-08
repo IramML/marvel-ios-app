@@ -20,7 +20,7 @@ public final class CoredataClient: DatabaseClient {
     public func get<T>(databaseEntity: DatabaseEntity, completion: @escaping (LocalResult<[T]>) -> Void) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: databaseEntity.entityName)
         
-        if let results: [T] = try? request.execute() as? [T] {
+        if let results: [T] = try? viewContext.fetch(request) as? [T] {
             completion(.success(data: results))
         } else {
             completion(.failure(error: .databaseError))
@@ -31,7 +31,7 @@ public final class CoredataClient: DatabaseClient {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: databaseEntity.entityName)
         request.predicate = NSPredicate(format: "id == %@", id)
         
-        if let results: [T] = try? request.execute() as? [T] {
+        if let results: [T] = try? viewContext.fetch(request) as? [T] {
             completion(.success(data: results.first))
         } else {
             completion(.failure(error: .databaseError))

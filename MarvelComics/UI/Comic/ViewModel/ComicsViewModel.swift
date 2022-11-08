@@ -26,7 +26,8 @@ class ComicsViewModel: ObservableObject {
                 case .success(let data):
                     self?.comicsSubject.send(data)
                 case .failure(let error):
-                    fatalError("Got error \(error)")
+                    //fatalError("Got error \(error)")
+                    break
                 }
             }
         }

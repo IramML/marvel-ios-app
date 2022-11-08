@@ -3,8 +3,8 @@
     <entity name="LocalComic" representedClassName="LocalComic" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="format" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="pageCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="pageCount" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="thumbnail" maxCount="1" deletionRule="Nullify" destinationEntity="LocalComicImage"/>
     </entity>
