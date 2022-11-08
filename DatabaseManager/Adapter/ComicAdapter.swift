@@ -19,7 +19,7 @@ extension Array where Element == LocalComic {
 extension LocalComic {
     func toDomain() -> Comic {
         Comic(
-            id: Int(id),
+            id: Int(id ?? "0") ?? 0,
             digitalId: 0,
             title: title ?? "",
             issueNumber: 0,
@@ -29,7 +29,7 @@ extension LocalComic {
             isbn: "",
             diamondCode: "",
             format: format ?? "",
-            pageCount: Int(pageCount),
+            pageCount: Int(pageCount ?? "0") ?? 0,
             textObjects: [],
             series: ComicResource(resourceURI: "", name: ""),
             variants: [],
@@ -37,14 +37,8 @@ extension LocalComic {
             collectedIssues: [],
             dates: [],
             prices: [],
-            thumbnail: thumbnail?.toDomain() ?? ComicImage(path: "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available", extensionImg: "jpg"),
+            thumbnail: ComicImage(path: imagePath ?? "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available", extensionImg: imageExtension ?? "jpg"),
             images: [],
             creators: ComicCreators(available: 0, returned: 0, collectionURI: "", items: []))
-    }
-}
-
-extension LocalComicImage {
-    func toDomain() -> ComicImage {
-        ComicImage(path: path ?? "", extensionImg: extensionImg ?? "")
     }
 }
