@@ -20,6 +20,7 @@
 		FA440A65291A118D00571606 /* GetFavoriteComicsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA440A64291A118D00571606 /* GetFavoriteComicsUseCase.swift */; };
 		FA440A68291A1C1200571606 /* LocalComic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA440A66291A1C1200571606 /* LocalComic+CoreDataClass.swift */; };
 		FA440A69291A1C1200571606 /* LocalComic+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA440A67291A1C1200571606 /* LocalComic+CoreDataProperties.swift */; };
+		FA440A6B291AAB1E00571606 /* AlertBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA440A6A291AAB1E00571606 /* AlertBody.swift */; };
 		FA4758732919793A004868AE /* ComicDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4758722919793A004868AE /* ComicDetailView.swift */; };
 		FA47587529197AC2004868AE /* Comic+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA47587429197AC2004868AE /* Comic+Hashable.swift */; };
 		FA47587829197E7D004868AE /* AccentButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA47587729197E7D004868AE /* AccentButtonView.swift */; };
@@ -197,6 +198,7 @@
 		FA440A64291A118D00571606 /* GetFavoriteComicsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFavoriteComicsUseCase.swift; sourceTree = "<group>"; };
 		FA440A66291A1C1200571606 /* LocalComic+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalComic+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FA440A67291A1C1200571606 /* LocalComic+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalComic+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA440A6A291AAB1E00571606 /* AlertBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBody.swift; sourceTree = "<group>"; };
 		FA4758722919793A004868AE /* ComicDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailView.swift; sourceTree = "<group>"; };
 		FA47587429197AC2004868AE /* Comic+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comic+Hashable.swift"; sourceTree = "<group>"; };
 		FA47587729197E7D004868AE /* AccentButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentButtonView.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			children = (
 				FA41B918291897D600D15627 /* CacheAsyncImage.swift */,
 				FA47587729197E7D004868AE /* AccentButtonView.swift */,
+				FA440A6A291AAB1E00571606 /* AlertBody.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1085,6 +1088,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE0C7CD29196F4E00F19E26 /* ComicsViewModel.swift in Sources */,
+				FA440A6B291AAB1E00571606 /* AlertBody.swift in Sources */,
 				FA5679EC2918933600A51C46 /* ComicsListView.swift in Sources */,
 				FA5679E8291892B800A51C46 /* ComicsView.swift in Sources */,
 				FAE9F89B2919DCB900101FA4 /* ComicDetailViewModel.swift in Sources */,
