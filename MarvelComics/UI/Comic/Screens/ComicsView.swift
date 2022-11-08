@@ -17,6 +17,7 @@ struct ComicsView: View {
     
     @State var comics: [Comic] = []
     @State var path: [Comic] = []
+    @StateObject private var alertBody: AlertBody = AlertBody()
     
     init() {
         let remoteDS = ComicsRequester()
@@ -33,6 +34,12 @@ struct ComicsView: View {
                     path = [comics]
                 }
             }
+            .alert(alertBody.title, isPresented: $alertBody.shouldShow) {
+            }
+            .onReceive(comicsViewModel.alertSubject, perform: { alertOutput in
+                alertBody.title = alertOutput.title
+                alertBody.shouldShow = alertOutput.shouldShow
+            })
             .onReceive(comicsViewModel.comicsSubject, perform: { comicsOutput in
                 comics = comicsOutput
             })

@@ -14,6 +14,7 @@ import Data
 class FavoriteComicsViewModel: ObservableObject {
     private let getFavoriteComicsUseCase: GetFavoriteComicsUseCase
     var comicsSubject = PassthroughSubject<[Comic], Never>()
+    var alertSubject = PassthroughSubject<AlertBody, Never>()
     
     init(getFavoriteComicsUseCase: GetFavoriteComicsUseCase) {
         self.getFavoriteComicsUseCase = getFavoriteComicsUseCase
@@ -25,9 +26,9 @@ class FavoriteComicsViewModel: ObservableObject {
                 switch result {
                 case .success(let data):
                     self?.comicsSubject.send(data)
-                case .failure(let error):
-                    //fatalError("Got error \(error)")
-                    break
+                case .failure(_):
+                    self?.alertSubject.send(AlertBody(shouldShow: true, title: "There was an error loading the comics"))
+                    self?.comicsSubject.send([])
                 }
             }
         }
