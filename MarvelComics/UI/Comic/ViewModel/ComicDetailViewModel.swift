@@ -16,6 +16,7 @@ class ComicDetailViewModel: ObservableObject {
     private let addFavoriteComicUseCase: AddFavoriteComicUseCase
     private let removeFavoriteComicUseCase: RemoveFavoriteComicUseCase
     var isSavedSubject = PassthroughSubject<Bool, Never>()
+    var alertSubject = PassthroughSubject<AlertBody, Never>()
     
     init(getFavoriteComicUseCase: GetFavoriteComicUseCase, addFavoriteComicUseCase: AddFavoriteComicUseCase, removeFavoriteComicUseCase: RemoveFavoriteComicUseCase) {
         self.getFavoriteComicUseCase = getFavoriteComicUseCase
@@ -38,13 +39,34 @@ class ComicDetailViewModel: ObservableObject {
     
     func addToFavorites(comic: Comic) {
         self.addFavoriteComicUseCase.invoke(comic: comic) { [weak self] (result: LocalResult<Bool>) in
-            self?.checkIsSavedComic(comicId: comic.id)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    if data {
+                        self?.checkIsSavedComic(comicId: comic.id)
+                    }
+                    self?.alertSubject.send(AlertBody(shouldShow: data, title: data ? "Comic added to favorites" : "Could not added comic to favorites"))
+                case .failure(_):
+                    self?.alertSubject.send(AlertBody(shouldShow: true, title: "There was a problem adding the comic to favorites. Try again"))
+                }
+            }
+            
         }
     }
     
     func removeFromFavorites(comicId: Int) {
         self.removeFavoriteComicUseCase.invoke(byId: comicId) { [weak self] (result: LocalResult<Bool>) in
-            self?.checkIsSavedComic(comicId: comicId)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    if data {
+                        self?.checkIsSavedComic(comicId: comicId)
+                    }
+                    self?.alertSubject.send(AlertBody(shouldShow: data, title: data ? "Comic removed to favorites" : "Comic could not remove comic from favorites"))
+                case .failure(_):
+                    self?.alertSubject.send(AlertBody(shouldShow: true, title: "There was a problem removing the comic to favorites. Try again"))
+                }
+            }
         }
     }
 }
